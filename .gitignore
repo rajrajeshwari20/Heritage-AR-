@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.db
+.pytest_cache/
+.vscode/
+*.log
+
+# Scratch logs and outputs
+dbcheck.txt
+ingest_*.txt
+
+firebase-service-account.json
+*-firebase-adminsdk-*.json

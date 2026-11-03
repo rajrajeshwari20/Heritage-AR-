@@ -1,0 +1,406 @@
+body {
+  background: #3a2215;
+  color: #f4e9da;
+  overflow-x: hidden;
+}
+.assistant-header {
+  align-items: center;
+  background: #402719;
+  border-bottom: 1px solid rgba(214, 164, 81, 0.25);
+  display: flex;
+  height: 3.5rem;
+  justify-content: space-between;
+  padding: 0 2.5vw;
+}
+.assistant-wordmark {
+  color: #f2e9dd;
+  font-family: Georgia, serif;
+  font-size: 1.45rem;
+}
+.assistant-header nav {
+  display: flex;
+  gap: 1.7rem;
+}
+.assistant-header nav a,
+.assistant-actions {
+  font-size: 0.58rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.assistant-header nav a {
+  padding: 1.2rem 0 1rem;
+}
+.assistant-header nav a.is-current,
+.assistant-header nav a:hover {
+  border-bottom: 2px solid #d69b35;
+  color: #f0b84e;
+}
+.assistant-actions {
+  display: flex;
+  gap: 1rem;
+}
+.assistant-page {
+  background:
+    radial-gradient(circle at 50% 25%, rgba(136, 83, 40, 0.2), transparent 42%),
+    #3a2215;
+  min-height: calc(100vh - 3.5rem);
+  padding: 2.7rem 1rem 4rem;
+}
+.assistant-intro {
+  text-align: center;
+}
+.assistant-emblem {
+  color: #f0b84e;
+  font-size: 1.9rem;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.assistant-emblem-img {
+  height: 3.6rem;
+  width: 3.6rem;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(240, 184, 78, 0.4));
+  transition: transform 0.3s ease;
+}
+.assistant-emblem-img:hover {
+  transform: scale(1.08) rotate(-3deg);
+}
+.assistant-kicker {
+  color: #dec7ad;
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  margin: 0.7rem 0 1rem;
+  text-transform: uppercase;
+}
+.assistant-intro h1 {
+  color: #f7ede0;
+  font-family: Georgia, serif;
+  font-size: clamp(2.7rem, 5vw, 4rem);
+  font-weight: 500;
+  margin: 0 0 2.5rem;
+  text-transform: uppercase;
+}
+.assistant-shell {
+  background: #d8c6aa;
+  border: 1px solid rgba(255, 240, 216, 0.4);
+  border-radius: 0.4rem;
+  box-shadow: 0 18px 60px rgba(17, 8, 3, 0.25);
+  color: #38251a;
+  display: grid;
+  gap: 2.4rem;
+  grid-template-columns: 1.6fr 0.9fr;
+  margin: 0 auto;
+  max-width: 60rem;
+  padding: 1.5rem;
+}
+.chat-column {
+  min-width: 0;
+  padding: 1rem 0.5rem 0.3rem;
+}
+.question-bubble {
+  background: #c4b294;
+  border-radius: 0.2rem;
+  font-size: 0.75rem;
+  margin-left: auto;
+  padding: 0.85rem 1.1rem;
+  position: relative;
+  width: 58%;
+}
+.question-bubble small {
+  bottom: -0.9rem;
+  color: #806d55;
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  position: absolute;
+  right: 0.4rem;
+  text-transform: uppercase;
+}
+.answer-row {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.8rem;
+  margin: 2.2rem 0 1.5rem;
+}
+.answer-icon {
+  background: #765b3d;
+  border-radius: 0.55rem;
+  color: #f8e8c8;
+  flex: 0 0 1.9rem;
+  font-size: 0.95rem;
+  padding: 0.45rem;
+  text-align: center;
+}
+.answer-row p {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0;
+}
+.source-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 2.7rem;
+}
+.source-grid article {
+  border: 1px solid rgba(107, 82, 50, 0.22);
+  border-radius: 0.2rem;
+  min-height: 4.8rem;
+  padding: 0.8rem;
+}
+.source-grid span {
+  font-size: 0.52rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.source-grid p {
+  color: #685542;
+  font-size: 0.72rem;
+  margin: 0.9rem 0 0;
+}
+.prompt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 2.5rem 0 0.7rem;
+}
+.prompt-chips button {
+  background: transparent;
+  border: 1px solid #745638;
+  border-radius: 1rem;
+  color: #533a26;
+  cursor: pointer;
+  font-size: 0.54rem;
+  letter-spacing: 0.07em;
+  padding: 0.45rem 0.75rem;
+  text-transform: uppercase;
+}
+.prompt-chips button:hover {
+  background: #745638;
+  color: #f6ead9;
+}
+.chat-form {
+  align-items: center;
+  background: #563923;
+  border-radius: 0.35rem;
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.4rem 0.5rem 0.4rem 1rem;
+}
+.chat-form input {
+  background: transparent;
+  border: 0;
+  color: #f5e8d6;
+  flex: 1;
+  font: inherit;
+  font-size: 0.75rem;
+  min-width: 0;
+  outline: 0;
+}
+.chat-form input::placeholder {
+  color: #a58a6d;
+}
+.chat-form button {
+  background: none;
+  border: 0;
+  color: #d39b32;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+.send-button {
+  background: #c28a29 !important;
+  border-radius: 0.5rem;
+  color: #332015 !important;
+  font-weight: 700;
+}
+.artifact-rail h2 {
+  font-family: Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin: 0.1rem 0 1.2rem;
+}
+.artifact-card {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+.artifact-image {
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.2rem;
+  height: 7.5rem;
+}
+.artifact-sword {
+  background-image:
+    linear-gradient(0deg, rgba(20, 10, 3, 0.3), transparent),
+    url("/static/images/historical/then-fort.jpg");
+}
+.artifact-coin {
+  background-image:
+    linear-gradient(0deg, rgba(20, 10, 3, 0.3), transparent),
+    url("/static/images/heritage/discover-fort.jpg");
+}
+.artifact-card strong {
+  font-family: Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.artifact-card small {
+  color: #75604b;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+}
+.assistant-status {
+  color: #e8bd70;
+  font-size: 0.7rem;
+  margin: 1rem auto;
+  max-width: 60rem;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .assistant-header {
+    padding: 0 1rem;
+  }
+  .assistant-header nav {
+    display: none;
+  }
+  .assistant-actions {
+    font-size: 0.5rem;
+  }
+  .assistant-page {
+    padding: 2rem 0.8rem;
+  }
+  .assistant-shell {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .artifact-rail {
+    border-top: 1px solid rgba(90, 62, 37, 0.25);
+    padding-top: 1.2rem;
+  }
+  .question-bubble {
+    width: 75%;
+  }
+  .source-grid {
+    margin-left: 0;
+  }
+}
+
+/* Museum-console presentation */
+body {
+  background: #211610;
+}
+.assistant-header {
+  background: rgba(31, 19, 13, .94);
+  border-bottom: 0;
+  box-shadow: none;
+  position: relative;
+  z-index: 2;
+}
+.assistant-wordmark {
+  letter-spacing: -.04em;
+}
+.assistant-header nav {
+  align-items: center;
+  background: rgba(255, 255, 255, .055);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  gap: .2rem;
+  padding: .25rem .35rem;
+}
+.assistant-header nav a {
+  border-radius: 999px;
+  padding: .55rem .8rem;
+}
+.assistant-header nav a.is-current,
+.assistant-header nav a:hover {
+  background: rgba(214, 155, 53, .18);
+  border-bottom: 0;
+}
+.assistant-page {
+  background:
+    radial-gradient(circle at 50% 0, rgba(174, 105, 39, .22), transparent 35%),
+    linear-gradient(135deg, #26170f, #48291a 52%, #21140e);
+  padding-top: 3.5rem;
+}
+.assistant-intro h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: -.05em;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, .3);
+}
+.assistant-shell {
+  background: linear-gradient(135deg, #e6d3b5, #cbb491);
+  border: 1px solid rgba(255, 239, 210, .65);
+  border-radius: .75rem;
+  box-shadow: 0 24px 80px rgba(12, 5, 1, .42);
+  gap: 3rem;
+  max-width: 66rem;
+  padding: 2rem;
+}
+.chat-column {
+  padding: 1rem .75rem .5rem;
+}
+.question-bubble {
+  background: #b79e7c;
+  border: 1px solid rgba(91, 61, 34, .15);
+  border-radius: .65rem .65rem .15rem .65rem;
+  box-shadow: 0 8px 18px rgba(84, 55, 28, .08);
+}
+.answer-icon {
+  background: #654626;
+  box-shadow: 0 5px 12px rgba(63, 36, 15, .2);
+}
+.source-grid article {
+  background: rgba(255, 247, 230, .18);
+  transition: background .2s ease, transform .2s ease;
+}
+.source-grid article:hover {
+  background: rgba(255, 247, 230, .4);
+  transform: translateY(-2px);
+}
+.prompt-chips button {
+  transition: background .2s ease, transform .2s ease;
+}
+.prompt-chips button:hover {
+  transform: translateY(-2px);
+}
+.artifact-rail {
+  border-left: 1px solid rgba(107, 82, 50, .2);
+  padding-left: 1.75rem;
+}
+.artifact-rail h2 {
+  font-size: 2rem;
+  letter-spacing: -.04em;
+}
+.artifact-card {
+  background: rgba(255, 248, 232, .2);
+  border-radius: .45rem;
+  padding-bottom: .55rem;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.artifact-card:hover {
+  box-shadow: 0 10px 24px rgba(82, 53, 26, .14);
+  transform: translateY(-4px);
+}
+.artifact-image {
+  border-radius: .45rem;
+  height: 8.3rem;
+}
+.artifact-card strong,
+.artifact-card small {
+  padding: 0 .65rem;
+}
+@media (max-width: 700px) {
+  .assistant-page {
+    padding-top: 2.2rem;
+  }
+  .assistant-shell {
+    padding: 1rem;
+  }
+  .artifact-rail {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
