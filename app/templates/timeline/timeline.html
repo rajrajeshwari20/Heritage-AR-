@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}{{ site.name }} Through Time | HeritageAR{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/timeline.css') }}" />{% endblock %}
+{% block content %}
+<main class="history-timeline" data-timeline>
+  <header class="timeline-header">
+    <a class="timeline-wordmark" href="{{ url_for('home.index') }}" aria-label="HeritageAR home">
+      <img class="brand-logo-gold" src="{{ url_for('static', filename='images/logo/logo-gold-banner.png') }}" alt="HeritageAR" />
+    </a>
+    <nav aria-label="Primary navigation"><a href="{{ url_for('home.index') }}">Home</a><a href="{{ url_for('map.heritage_map') }}">Explore</a><a href="{{ url_for('ar.experience') }}">AR Experience</a><a href="{{ url_for('assistant.assistant') }}">AI Guide</a><a href="{{ url_for('voice_assistant.voice_assistant') }}">Voice Assistant</a></nav>
+    <a class="timeline-back" href="{{ url_for('map.heritage_map') }}">Explore sites ↗</a>
+  </header>
+  <aside class="timeline-site-picker" aria-label="Choose a heritage site timeline">
+    <p class="picker-kicker">Nearby heritage</p>
+    <p class="picker-region">Select a place to view its timeline</p>
+    <div class="picker-rule"></div>
+    {% for key, s in sites.items() %}
+    <a class="timeline-site{% if key == site_key %} is-selected{% endif %}" href="{{ url_for('timeline.timeline', site=key) }}" data-site="{{ key }}" data-available="true"{% if key == site_key %} aria-pressed="true"{% endif %}>
+      <img src="{{ url_for('static', filename='images/heritage/discover-fort.jpg' if key == 'raigad' else ('images/heritage/nalanda-ruins.jpg' if key == 'nalanda' else ('images/timeline/konark-01.jpg' if key == 'konark' else ('images/timeline/martand-01.png' if key == 'martand' else ('images/timeline/meenakshi-gopuram.jpg' if key == 'meenakshi' else ('images/timeline/halebidu-temple-exterior.jpg' if key == 'hoysaleshwara' else 'images/historical/then-fort.jpg')))))) }}" alt="" />
+      <span><strong>{{ s.name }}</strong><small>{{ s.subtitle }}</small></span><em>{{ 'Selected' if key == site_key else 'View' }}</em>
+    </a>
+    {% endfor %}
+    <button class="timeline-site" type="button" data-site="ajanta" data-available="false">
+      <img src="{{ url_for('static', filename='images/historical/then-fort.jpg') }}" alt="" />
+      <span><strong>Ajanta Caves</strong><small>Buddhist rock-cut</small></span><em>Coming soon</em>
+    </button>
+    <button class="timeline-site" type="button" data-site="ellora" data-available="false">
+      <img src="{{ url_for('static', filename='images/historical/now-fort.jpg') }}" alt="" />
+      <span><strong>Ellora Caves</strong><small>Monolithic temple</small></span><em>Coming soon</em>
+    </button>
+    <p class="picker-note" data-site-note>{{ site.note }}</p>
+  </aside>
+  <section class="timeline-stage">
+    <div class="timeline-heading"><p>{{ site.kicker }}</p><h1>{{ site.heading | safe }}</h1><span>Drag or use arrows to move through history</span></div>
+    <div class="timeline-scroller" data-scroller>
+      <div class="timeline-track" data-track>
+        {% for event in events %}
+        <article class="era-card{% if loop.first %} is-active{% endif %}" data-era data-image="{{ event.image }}" tabindex="0" role="button" aria-label="View {{ event.year }}: {{ event.title }}">
+          <div class="era-year"><strong>{{ event.year }}</strong><i></i></div>
+          <div class="era-image"><img src="{{ event.image }}" onerror="this.src='{{ event.fallback }}'" alt="{{ event.title }} at {{ site.name }}" /></div>
+          <div class="era-panel"><p class="era-label">{{ event.label }}</p><h2>{{ event.title }}</h2><div class="era-copy"><p>{{ event.description }}</p><span>{{ site.name | upper }} ARCHIVE · {{ "%02d"|format(loop.index) }}</span></div></div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="timeline-controls"><button type="button" data-prev aria-label="Previous era">←</button><span><b data-current>01</b> / {{ "%02d"|format(events|length) }}</span><button type="button" data-next aria-label="Next era">→</button></div>
+  </section>
+</main>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/timeline.js') }}"></script>{% endblock %}

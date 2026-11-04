@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}3D World - Reconstructed Heritage | HeritageAR{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ar.css') }}" />
+{% endblock %}
+
+{% block content %}
+<main class="ar-experience" data-ar-experience data-initial-view="explore">
+  <header class="ar-header">
+    <a class="ar-brand" href="{{ url_for('home.index') }}" aria-label="HeritageAR home">
+      <img class="brand-logo-gold" src="{{ url_for('static', filename='images/logo/logo-gold-banner.png') }}" alt="HeritageAR" />
+    </a>
+    <p class="ar-location"><span aria-hidden="true">⌖</span> 3D Reconstructed Heritage Sites</p>
+    <nav class="ar-nav" aria-label="3D World sections">
+      <a href="{{ url_for('home.index') }}">Home</a>
+      <a href="{{ url_for('map.heritage_map') }}">Explore</a>
+    </nav>
+  </header>
+
+  <section class="ar-workspace" aria-label="3D reconstructed heritage models explorer">
+    <aside class="monument-sidebar">
+      <div class="sidebar-heading">
+        <p>3D Reconstruction</p>
+        <h1>Explore<br /><em>all models</em></h1>
+        <span class="sidebar-rule"></span>
+        <small>Rotate and zoom through complete 3D reconstructions of heritage sites. View each model in detail from all angles.</small>
+      </div>
+      <div class="site-switcher" role="tablist" aria-label="Heritage sites">
+        <button type="button" class="site-tab is-selected" role="tab" data-site="raigad" aria-selected="true">Raigad</button>
+        <button type="button" class="site-tab" role="tab" data-site="hampi" aria-selected="false">Hampi</button>
+        <button type="button" class="site-tab" role="tab" data-site="nalanda" aria-selected="false">Nalanda</button>
+      </div>
+      <div class="monument-list" id="monument-list" role="list" aria-label="3D reconstructed heritage models"></div>
+    </aside>
+
+    <section class="viewer-stage">
+      <div class="stage-copy">
+        <p id="monument-category">Royal precinct · reconstructed model</p>
+        <h2 id="monument-title">Royal Palace</h2>
+        <span id="monument-status">Reconstruction from the surviving palace base.</span>
+      </div>
+
+      <model-viewer
+        id="heritage-model"
+        class="heritage-model"
+        src="{{ url_for('static', filename='models/raigad/royal-palace.glb') }}"
+        alt="Interactive 3D reconstruction of the Royal Palace at Raigad Fort"
+        ar
+        ar-modes="webxr scene-viewer"
+        ar-scale="auto"
+        ar-placement="floor"
+        camera-controls
+        auto-rotate
+        rotation-per-second="10deg"
+        shadow-intensity="1"
+        shadow-softness="0.9"
+        environment-image="neutral"
+        exposure="1"
+        interaction-prompt="auto"
+        camera-orbit="45deg 70deg auto"
+        min-camera-orbit="auto auto 55%"
+        max-camera-orbit="auto auto 240%"
+        loading="eager"
+      >
+        <div slot="poster" class="model-loading" aria-live="polite"><span></span>Loading reconstruction</div>
+        <button slot="ar-button" class="launch-ar" type="button"><span aria-hidden="true">◎</span> View in AR</button>
+      </model-viewer>
+
+      <div class="viewer-hud" aria-label="3D viewer controls">
+        <span class="viewer-hint"><i aria-hidden="true">↻</i> Drag to rotate <b>·</b> Scroll to zoom</span>
+        <div class="viewer-controls">
+          <button type="button" id="toggle-rotation" class="round-control" aria-pressed="true" title="Pause rotation"><span aria-hidden="true">◌</span></button>
+          <button type="button" id="reset-model" class="round-control" title="Reset model view"><span aria-hidden="true">↺</span></button>
+        </div>
+      </div>
+
+      <div class="model-progress" id="model-progress" hidden><span></span></div>
+      <p class="model-error" id="model-error" hidden></p>
+    </section>
+
+    <aside class="detail-panel">
+      <div class="detail-panel-head">
+        <p>Model Details</p>
+        <span class="detail-number" id="detail-number">01 / 08</span>
+      </div>
+      <div class="detail-panel-copy">
+        <h3 id="detail-title">Royal Palace</h3>
+        <p id="detail-description">The palace was a central part of Raigad's royal precinct. Today its surviving base and pillars indicate the footprint of the former royal residence.</p>
+      </div>
+      <dl class="monument-facts">
+        <div><dt>What survives</dt><dd id="detail-survival">Foundations and base pillars</dd></div>
+        <div><dt>Era</dt><dd id="detail-era">17th Century Maratha Empire</dd></div>
+      </dl>
+      <a href="{{ url_for('ar.experience') }}" class="panel-action" type="button"><span aria-hidden="true">⌁</span> View Full AR Experience</a>
+      <p class="model-credit">3D reconstructions created through rigorous historical research and archaeological data. Explore these models in augmented reality on your device.</p>
+    </aside>
+  </section>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script src="{{ url_for('static', filename='js/3d-world.js') }}"></script>
+{% endblock %}
