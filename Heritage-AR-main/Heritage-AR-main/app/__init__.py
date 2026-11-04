@@ -1,0 +1,26 @@
+from flask import Flask
+
+
+def create_app() -> Flask:
+    app = Flask(__name__)
+    app.config.from_object("app.config.settings.Config")
+
+    from app.routes.home_routes import home_bp
+    from app.routes.history_routes import history_bp
+    from app.routes.assistant_routes import assistant_bp
+    from app.routes.auth_routes import auth_bp
+    from app.routes.map_routes import map_bp
+    from app.routes.timeline_routes import timeline_bp
+    from app.routes.voice_assistant_routes import voice_assistant_bp
+    from app.routes.ar_routes import ar_bp
+    from app.routes.profile_routes import profile_bp
+    app.register_blueprint(home_bp)
+    app.register_blueprint(history_bp)
+    app.register_blueprint(assistant_bp)
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(map_bp)
+    app.register_blueprint(timeline_bp)
+    app.register_blueprint(voice_assistant_bp)
+    app.register_blueprint(ar_bp)
+    app.register_blueprint(profile_bp)
+    return app
